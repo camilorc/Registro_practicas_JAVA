@@ -7,6 +7,13 @@ import Model.DTO.Usuario;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -513,8 +520,7 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
             String nombreCentro = "";
             //Obtenemos atributos del formulario
             int rut_alumno = Integer.parseInt(txtRut.getText());
-            docente.setFecha_nacimiento(fechaI);
-            docente.setFecha_nacimiento(fechaT);
+            
             
             String username ="";
             String pass = "";
@@ -543,6 +549,7 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Acta1 ha sido creada", "Atencion", JOptionPane.INFORMATION_MESSAGE);
                 limpiarFormulario();
                 llenarComboCentros();
+                
             } else {
                 lblMsje.setText("Error al crear Acta1");
             }
@@ -569,18 +576,13 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                 txtApellido1.setText(user.getApellido1());
                 txtApellido2.setText(user.getApellido2());
                 txtCarrera.setText(user.nombre_carrera());
-                txtDiaI.setText(user.getFecha_nacimiento().substring(1, 2));
-                txtMesI.setText(user.getFecha_nacimiento().substring(3, 4));
-                txtAnioI.setText(user.getFecha_nacimiento().substring(5, 8));
-                txtDiaT.setText(user.getFecha_nacimiento().substring(1, 2));
-                txtMesT.setText(user.getFecha_nacimiento().substring(3, 4));
-                txtAnioT.setText(user.getFecha_nacimiento().substring(5, 8));
+                
 
             } else {
                 lblMsje.setText("El alumno no ha sido encontro");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, null, "Acta1 no pudo ser creada" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, null, "Ocurrio un error" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -940,5 +942,7 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ha ocurrido un error", "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    
 
 }

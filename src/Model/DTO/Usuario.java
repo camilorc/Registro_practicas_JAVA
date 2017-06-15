@@ -11,6 +11,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
 /**
@@ -557,6 +567,48 @@ public class Usuario extends Conexion{
         } catch (Exception e) {
             return false;
         }
+    
+    }
+    
+    //mandar email
+    public void mandarEmail(String email, String mensaje, String asunto){
+        try
+        {
+            // Propiedades de la conexión
+            Properties props = new Properties();
+            props.setProperty("mail.smtp.host", "smtp.gmail.com");
+            props.setProperty("mail.smtp.starttls.enable", "true");
+            props.setProperty("mail.smtp.port", "587");
+            props.setProperty("mail.smtp.user", "c.riffoc@alumnos.duoc.cl");
+            props.setProperty("mail.smtp.auth", "true");
+
+            // Preparamos la sesion
+            Session session = Session.getDefaultInstance(props);
+
+            // Construimos el mensaje
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("yo@yo.com"));
+            message.addRecipient(
+                Message.RecipientType.TO,
+                new InternetAddress(email));
+            message.setSubject("Hola");
+            message.setText(
+                "Mensajito con Java Mail" + "de los buenos." + "poque si");
+
+            // Lo enviamos.
+            Transport t = session.getTransport("smtp");
+            //Poner datos de un email
+            t.connect("c.riffoc@alumnos.duoc.cl", "");
+            t.sendMessage(message, message.getAllRecipients());
+
+            // Cierre.
+            t.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    
     
     }
 

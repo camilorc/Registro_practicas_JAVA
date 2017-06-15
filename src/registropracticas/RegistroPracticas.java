@@ -71,15 +71,8 @@ public class RegistroPracticas extends Conexion{
     }
     
     public static void main(String[] args) throws SQLException {
-        ListaAlumnos alum = new ListaAlumnos();
-        
-        ArrayList<ListaAlumnos> lista = alum.listarAsignaciones();
-        
-        for (ListaAlumnos listaAlumnos : lista) {
-           System.out.println("Nom Alum "+listaAlumnos.getNombres());
-           System.out.println("Nom DOcente "+listaAlumnos.getNombre_docente());
-           System.out.println("Estado "+listaAlumnos.getEstado_detalle());
-        }
+        Usuario user = new Usuario();
+        user.mandarEmail("camiloriffoc@gmail.com", "algo", "algo");
         
         
         
