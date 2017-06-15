@@ -8,10 +8,12 @@ package registropracticas;
 import Model.DAO.Acta1DAO;
 import Model.DAO.Conexion;
 import Model.DTO.Usuario;
+import Model.DTO.ListaAlumnos;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -69,33 +71,15 @@ public class RegistroPracticas extends Conexion{
     }
     
     public static void main(String[] args) throws SQLException {
-        Conexion con = new Conexion();
+        ListaAlumnos alum = new ListaAlumnos();
         
-        CallableStatement cst;
-        //cst = con.con.prepareCall("{call crear_sede(?,?)}");
-        //System.out.println("Paso cst");
-        //cst.setString(1, "Republica");
-        //cst.setString(2, "Metro republica");
-        //System.out.println("Antes del execute");
-        //cst.execute();
-        //System.out.println("Completado");
+        ArrayList<ListaAlumnos> lista = alum.listarAsignaciones();
         
-        cst = con.con.prepareCall("{call crear_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-        cst.setInt(1, 1688889);
-                cst.setString(2, "k");
-                cst.setString(3, "123abc");
-                cst.setString(4, "PRUEBAPROC");
-                cst.setString(5, "PRUEBAPROC");
-                cst.setString(6, "PRUEBAPROC");
-                cst.setString(7, "PRUEBAPROC");
-                cst.setString(8, "PRUEBAPROC");
-                cst.setInt(9, 1234567);
-                cst.setString(10, "PRUEBAPROC@email.com");
-                cst.setInt(11, 1);
-                cst.setInt(12, 2);
-                cst.setInt(13, 0);
-        cst.execute();
-        System.err.println("Completado");
+        for (ListaAlumnos listaAlumnos : lista) {
+           System.out.println("Nom Alum "+listaAlumnos.getNombres());
+           System.out.println("Nom DOcente "+listaAlumnos.getNombre_docente());
+           System.out.println("Estado "+listaAlumnos.getEstado_detalle());
+        }
         
         
         

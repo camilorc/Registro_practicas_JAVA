@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/portafolio/RegistroPracticas/src/JFrame/IngresarDocente.java</file>
-            <file>file:/C:/xampp/htdocs/portafolio/RegistroPracticas/src/JFrame/CoordinadorCrearActa1.java</file>
-            <file>file:/C:/xampp/htdocs/portafolio/RegistroPracticas/src/Model/DTO/CentroPractica.java</file>
-            <file>file:/C:/xampp/htdocs/portafolio/RegistroPracticas/src/Model/DTO/Usuario.java</file>
-            <file>file:/C:/xampp/htdocs/portafolio/RegistroPracticas/src/Model/DTO/Practica.java</file>
+            <file>file:/C:/xampp/htdocs/java_portafolio/src/JFrame/CoordinadorCrearActa1.java</file>
+            <file>file:/C:/xampp/htdocs/java_portafolio/src/Model/DTO/ListaAlumnos.java</file>
+            <file>file:/C:/xampp/htdocs/java_portafolio/src/Model/DTO/Usuario.java</file>
         </group>
     </open-files>
 </project-private>

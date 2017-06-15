@@ -387,25 +387,23 @@ public class Usuario extends Conexion{
     public boolean IniciarSesion() {
         try {
 
-            String sql = "Select * FROM USUARIO WHERE RUT = '" + this.rut + "' AND CONTRASEÑA = '" + this.pass + "' AND DV_USUARIO= '" + this.getDv() + "'";
-            System.out.println("pASO EL SQL"+sql);
-            System.out.println("Conexion: "+con);
-            System.out.println("STM: "+stm);
+            String sql = "Select RUT, DV_USUARIO, NOMBRES, APELLIDO1, ROLES_IDROL FROM USUARIO WHERE RUT = '"+this.rut+"' AND CONTRASEÑA = '"+this.pass+"' AND DV_USUARIO= '"+this.dv+"'";
             rs = stm.executeQuery(sql);
-            System.out.println("PASO EL EXECUTEQUERY");
-            rs.next();
-            System.out.println("pASO EL RX.NEXT");
-            this.setRut(rut);
-            this.setDv(rs.getString("DV_USUARIO"));
-            this.setPass(rs.getString("CONTRASEÑA"));
-            this.setNombres(rs.getString("NOMBRES"));
-            this.setApellido1(rs.getString("APELLIDO1"));
-            this.setApellido2(rs.getString("APELLIDO2"));
-            this.setFecha_nacimiento(rs.getString("FECHA_NACIMIENTO"));
-            this.setDireccion(rs.getString("DIRECCION"));
-            this.setTelefono(rs.getInt("TELEFONO"));
-            this.setEmail(rs.getString("CORREO"));
-            this.setId_rol(rs.getInt("ROLES_IDROL"));
+            
+            while(rs.next()){
+                this.setRut(rs.getInt("RUT"));
+                this.setDv(rs.getString("DV_USUARIO"));
+                //this.setPass(rs.getString("CONTRASEÑA"));
+                this.setNombres(rs.getString("NOMBRES"));
+                this.setApellido1(rs.getString("APELLIDO1"));
+                //this.setApellido2(rs.getString("APELLIDO2"));
+                //this.setFecha_nacimiento(rs.getString("FECHA_NACIMIENTO"));
+                //this.setDireccion(rs.getString("DIRECCION"));
+                //this.setTelefono(rs.getInt("TELEFONO"));
+                //this.setEmail(rs.getString("CORREO"));
+                this.setId_rol(rs.getInt("ROLES_IDROL"));
+            }
+            
             return true;
             //return docente;
 
@@ -469,5 +467,102 @@ public class Usuario extends Conexion{
         String pass = Integer.toString(this.rut).substring(1,5)+this.nombre_carrera.substring(1, 3);
         return pass;
     }
+    
+    
+    public boolean BuscarRut() {
+
+        //Buscamos al USUARIO en la BD
+        try {
+            
+            CallableStatement cst;
+            cst = con.prepareCall("{call buscar_usuario_rut(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            
+            // Parametro IN del procedimiento almacenado
+            cst.setInt(1, getRut());
+            
+            
+            System.out.println("Paso los parametros IN");
+            // Definimos los tipos de los parametros de salida del procedimiento almacenado
+            
+            cst.registerOutParameter(2, java.sql.Types.VARCHAR);//contrasenna
+            cst.registerOutParameter(3, java.sql.Types.VARCHAR);//nombres
+            cst.registerOutParameter(4, java.sql.Types.VARCHAR);//apellido1
+            cst.registerOutParameter(5, java.sql.Types.VARCHAR);//apellido2
+            cst.registerOutParameter(6, java.sql.Types.VARCHAR);//fecha_nacimineto
+            cst.registerOutParameter(7, java.sql.Types.VARCHAR);//direccion
+            cst.registerOutParameter(8, java.sql.Types.INTEGER);//telefono
+            cst.registerOutParameter(9, java.sql.Types.VARCHAR);//email
+            cst.registerOutParameter(10, java.sql.Types.INTEGER);//sede_id
+            cst.registerOutParameter(11, java.sql.Types.VARCHAR);//sede_nombre
+            cst.registerOutParameter(12, java.sql.Types.INTEGER);//carrera_id
+            cst.registerOutParameter(13, java.sql.Types.VARCHAR);//carrera_nombre
+            System.out.println("Paso los parametros UUT");
+            // Ejecuta el procedimiento almacenado
+            cst.execute();
+            System.out.println("Paso execute");
+            // Se obtienen la salida del procedimineto almacenado
+            int practica_id;
+            String pass = cst.getString(2);
+            String nombres = cst.getString(3);
+            String apellido1 = cst.getString(4);
+            String apellido2 = cst.getString(5);
+            String fecha_nacimiento = cst.getString(6);
+            String direccion = cst.getString(7);
+            int telefono = Integer.parseInt(cst.getString(8));
+            String email = cst.getString(9);
+            int sede_id = Integer.parseInt(cst.getString(10));
+            String sede_nombre = cst.getString(11);
+            int carrera_id = Integer.parseInt(cst.getString(12));
+            String carrera_nombre = cst.getString(13);
+            
+            //Asignamos valores al objeto Usuario
+            this.setRut(getRut());
+            this.setDv(getDv());
+            this.setPass(pass);
+            this.setNombres(nombres);
+            this.setApellido1(apellido1);
+            this.setApellido2(apellido2);
+            this.setFecha_nacimiento(fecha_nacimiento);
+            this.setDireccion(direccion);
+            this.setTelefono(telefono);
+            this.setEmail(email);
+            this.setId_sede(sede_id);
+            this.setNombre_sede(sede_nombre);
+            this.setId_carrera(carrera_id);
+            this.setNombre_carrera(carrera_nombre);
+                       
+            return true;
+            //return docente;
+
+        } catch (Exception e) {
+            System.out.println("entro al catch de de Buscar_RUT " + e.getMessage());
+            return false;
+        }
+
+    }
+    
+    
+    //Cambiar al docente a cargo de la practica
+    public boolean CambiarDocenteAsignado(int rut_alumno, int rut_docente_nuevo){
+        try {
+            CallableStatement cst;
+            cst = con.prepareCall("{call cambiar_estado_prac_docente(?,?)}");
+            
+            // Parametro IN del procedimiento almacenado
+            cst.setInt(1, rut_alumno);
+            cst.setInt(2, rut_docente_nuevo);
+            cst.execute();
+            
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    
+    }
+
+    
+    
+    
+    
     
 }

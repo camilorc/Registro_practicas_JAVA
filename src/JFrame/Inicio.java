@@ -152,10 +152,14 @@ public class Inicio extends javax.swing.JFrame {
             usuario.setRut(Integer.parseInt(jt_usuario.getText()) );
             usuario.setPass(jt_pass.getText());
             usuario.setDv(jt_dv.getText());
-            
+            System.out.println("RUT: "+usuario.getRut());
+            System.out.println("DV: "+usuario.getDv());
+            System.out.println("PASS: "+usuario.getPass());
             //Usamos método de la clase
             if(usuario.IniciarSesion()){
                 System.out.println("Iniciada sesión correcta" + usuario.getId_rol());
+                System.out.println("Iniciada sesión correcta" + usuario.getNombres());
+                System.out.println("Iniciada sesión correcta" + usuario.getRut());
                 //Significa que si el usuario es Jefe de Carrera (ROL 1)
                 if(usuario.getId_rol() == 1){
                     //Puede entrar al Index de su perfil
