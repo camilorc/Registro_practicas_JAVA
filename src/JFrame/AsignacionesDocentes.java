@@ -221,9 +221,12 @@ public class AsignacionesDocentes extends javax.swing.JFrame {
         
         try{
             modelo = (DefaultTableModel) jtableuno.getModel();
-            int a =modelo.getRowCount();
-            for(int i=0; i<a; i++)
-                modelo.removeRow(i); //aquí estaba el error, antes pasaba la i como parametro.... soy un bacín  XD
+            
+            while(modelo.getRowCount() > 0){
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    modelo.removeRow(i);
+                }
+            }
         }catch(Exception e){
             System.out.println(e);
         }

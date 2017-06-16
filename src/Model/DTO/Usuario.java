@@ -556,11 +556,12 @@ public class Usuario extends Conexion{
     public boolean CambiarDocenteAsignado(int rut_alumno, int rut_docente_nuevo){
         try {
             CallableStatement cst;
-            cst = con.prepareCall("{call cambiar_estado_prac_docente(?,?)}");
+            cst = con.prepareCall("{call cambiar_estado_prac_docente(?,?,?)}");
             
             // Parametro IN del procedimiento almacenado
             cst.setInt(1, rut_alumno);
             cst.setInt(2, rut_docente_nuevo);
+            cst.setInt(3, 0); //Le mandamos 0 para que quede pendiente como es una nueva asignación
             cst.execute();
             
             return true;
