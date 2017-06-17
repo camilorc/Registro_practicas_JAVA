@@ -72,7 +72,7 @@ public class RegistroPracticas extends Conexion{
     
     public static void main(String[] args) throws SQLException {
         Usuario user = new Usuario();
-        user.mandarEmail("camiloriffoc@gmail.com", "algo", "algo");
+        user.mandarEmail("camiloriffoc@gmail.com", "Mensajeeeeee", "asuntoooo");
         
         
         

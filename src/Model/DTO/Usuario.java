@@ -580,7 +580,7 @@ public class Usuario extends Conexion{
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");
             props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.user", "c.riffoc@alumnos.duoc.cl");
+            props.setProperty("mail.smtp.user", "duocucmaipu.informatica@gmail.com");
             props.setProperty("mail.smtp.auth", "true");
 
             // Preparamos la sesion
@@ -592,14 +592,14 @@ public class Usuario extends Conexion{
             message.addRecipient(
                 Message.RecipientType.TO,
                 new InternetAddress(email));
-            message.setSubject("Hola");
+            message.setSubject(asunto);
             message.setText(
-                "Mensajito con Java Mail" + "de los buenos." + "poque si");
+                mensaje);
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
             //Poner datos de un email
-            t.connect("c.riffoc@alumnos.duoc.cl", "");
+            t.connect("duocucmaipu.informatica@gmail.com", "abcd1234.");
             t.sendMessage(message, message.getAllRecipients());
 
             // Cierre.

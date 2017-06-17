@@ -6,7 +6,6 @@
 package Model.DTO;
 
 import Model.DAO.Conexion;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -20,14 +19,18 @@ public class CentroPractica extends Conexion{
     private String direccionCentro; 
     private String departamentoCentro; 
     private String areaCentro;
+    private String email;
+    private String username;
+    private String pass;
     private ResultSet rs;
 
-    public CentroPractica(int idCentroPractica, String nombreCentro, String direccionCentro, String departamentoCentro, String areaCentro) {
+    public CentroPractica(int idCentroPractica, String nombreCentro, String direccionCentro, String departamentoCentro, String areaCentro, String email) {
         this.idCentroPractica = idCentroPractica;
         this.nombreCentro = nombreCentro;
         this.direccionCentro = direccionCentro;
         this.departamentoCentro = departamentoCentro;
         this.areaCentro = areaCentro;
+        this.email = email;
     }
 
     public CentroPractica() {
@@ -36,6 +39,9 @@ public class CentroPractica extends Conexion{
         this.direccionCentro = "";
         this.departamentoCentro = "";
         this.areaCentro = "";
+        this.email = "";
+        this.username ="";
+        this.pass ="";
     }
 
     public int getIdCentroPractica() {
@@ -78,6 +84,31 @@ public class CentroPractica extends Conexion{
         this.areaCentro = areaCentro;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    
     @Override
     public String toString() {
         return this.nombreCentro;
@@ -97,6 +128,9 @@ public class CentroPractica extends Conexion{
                 centro.setDireccionCentro(rs.getString("DIRECCION_CENTRO"));
                 centro.setDepartamentoCentro(rs.getString("DEPARTAMENTO_CENTRO"));
                 centro.setAreaCentro(rs.getString("AREA_CENTRO"));
+                centro.setEmail(rs.getString("EMAIL"));
+                centro.setUsername(rs.getString("USERNAME"));
+                centro.setPass(rs.getString("PASS"));
                 centros.add(centro);
             }
             return centros;

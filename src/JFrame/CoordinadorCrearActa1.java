@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
  * @author Lissette
  */
 public class CoordinadorCrearActa1 extends javax.swing.JFrame {
-
+    private String emailAlumno;
     /**
      * Creates new form CoordinadorCrearActa1
      */
@@ -98,6 +98,8 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
         txtNomCentro = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jtf_email_centro = new javax.swing.JTextField();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -309,6 +311,8 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
 
         jLabel16.setText("UserName:");
 
+        jLabel18.setText("Email:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -396,10 +400,6 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                                         .addComponent(check_1)))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmb_nom_docente1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
@@ -412,11 +412,17 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel16)
-                                            .addComponent(jLabel15))
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel18))
                                         .addGap(41, 41, 41)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtNomCentro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtuserNameCentro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtNomCentro, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                                            .addComponent(txtuserNameCentro, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                                            .addComponent(jtf_email_centro)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmb_nom_docente1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 41, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -478,7 +484,7 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                     .addComponent(check_1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmb_centros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNomCentro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
@@ -486,11 +492,15 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtuserNameCentro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jtf_email_centro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cmb_nom_docente1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmb_nom_docente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -544,10 +554,24 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                 cantidad_horas = 480;
 
             }
+            String email_centro = jtf_email_centro.getText();
 
-            if (practica.Create(rut_alumno, docente.getRut(), fechaI, fechaT, cmb_tipo_practica.getSelectedItem().toString(), cantidad_horas, idcentro, nombreCentro,username,pass)) {
+            if (practica.Create(rut_alumno, docente.getRut(), fechaI, fechaT, cmb_tipo_practica.getSelectedItem().toString(), cantidad_horas, idcentro, nombreCentro,username,pass,email_centro)) {
                 JOptionPane.showMessageDialog(null, "Acta1 ha sido creada", "Atencion", JOptionPane.INFORMATION_MESSAGE);
                 limpiarFormulario();
+                //Mandamos un email al Alumno con detalles:
+                Usuario alumno = new Usuario();
+                alumno.mandarEmail(emailAlumno, "Se acaba de asignar su nueva practica, favor revisar detalles en la web", "Práctica asignada");
+                //Mandamos email al Profesor
+                docente.mandarEmail(docente.getEmail(), "Se acaba de asignar un nuevo alumno en práctica, favor revisar portal web para más detalles", "Nueva asignación de Alumno DUOC UC");
+                //Mandamo email al centro
+                if (!check_1.isSelected()) {
+                //Si esta seleccionado es verdadero ( existe ) por lo tanto no debería entrar
+                Usuario centro_pract = new Usuario();
+                centro_pract.mandarEmail(email_centro, "Sus datos de acceso son: USERNAME: "+username+" y su passwors es: "+pass, "Datos de acceso portal DUOC UC");
+                } 
+                
+                
                 llenarComboCentros();
                 
             } else {
@@ -576,6 +600,7 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                 txtApellido1.setText(user.getApellido1());
                 txtApellido2.setText(user.getApellido2());
                 txtCarrera.setText(user.nombre_carrera());
+                emailAlumno = user.getEmail();
                 
 
             } else {
@@ -824,6 +849,7 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -835,6 +861,7 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JTextField jtf_email_centro;
     private javax.swing.JLabel lblMsje;
     private javax.swing.JTextField txtAnioI;
     private javax.swing.JTextField txtAnioT;

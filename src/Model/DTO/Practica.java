@@ -144,14 +144,14 @@ public class Practica extends Conexion{
     }
     
     
-    public boolean Create(int rut_alumno, int rut_docente,String fecha_inicio,String fecha_termino,String tipo_practica,int cantidad_horas,int idcentro,String nombre_centro,String username, String pass){
+    public boolean Create(int rut_alumno, int rut_docente,String fecha_inicio,String fecha_termino,String tipo_practica,int cantidad_horas,int idcentro,String nombre_centro,String username, String pass,String email_centro){
         boolean salida = false;
         try {
             System.out.println("id centro: "+idcentro);
             if(con!=null){
                 System.out.println("Se conecto");
                 CallableStatement cst;
-                cst = con.prepareCall("{call ingresar_practica(?,?,?,?,?,?,?,?,?,?)}");
+                cst = con.prepareCall("{call ingresar_practica(?,?,?,?,?,?,?,?,?,?,?)}");
                 cst.setInt(1, rut_alumno);
                 cst.setInt(2, rut_docente);
                 cst.setString(3, fecha_inicio);
@@ -162,6 +162,7 @@ public class Practica extends Conexion{
                 cst.setString(8, nombre_centro);
                 cst.setString(9, username);
                 cst.setString(10, pass);
+                cst.setString(11, email_centro);
                 
                 cst.execute();
                 salida=true;

@@ -5,7 +5,13 @@
         <group>
             <file>file:/C:/xampp/htdocs/java_portafolio/src/JFrame/IndexCoordinadorCarrera.java</file>
             <file>file:/C:/xampp/htdocs/java_portafolio/src/JFrame/CoordinadorCrearActa1.java</file>
+            <file>file:/C:/xampp/htdocs/java_portafolio/src/Model/DTO/Practica.java</file>
+            <file>file:/C:/xampp/htdocs/java_portafolio/src/JFrame/CentrosPracticaGestion.java</file>
+            <file>file:/C:/xampp/htdocs/java_portafolio/src/Model/DTO/ListaAlumnos.java</file>
             <file>file:/C:/xampp/htdocs/java_portafolio/src/JFrame/AsignacionesDocentes.java</file>
+            <file>file:/C:/xampp/htdocs/java_portafolio/src/Model/DTO/CentroPractica.java</file>
+            <file>file:/C:/xampp/htdocs/java_portafolio/src/registropracticas/RegistroPracticas.java</file>
+            <file>file:/C:/xampp/htdocs/java_portafolio/src/Model/DTO/Usuario.java</file>
         </group>
     </open-files>
 </project-private>
