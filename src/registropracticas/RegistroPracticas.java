@@ -72,7 +72,12 @@ public class RegistroPracticas extends Conexion{
     
     public static void main(String[] args) throws SQLException {
         Usuario user = new Usuario();
-        user.mandarEmail("camiloriffoc@gmail.com", "Mensajeeeeee", "asuntoooo");
+        //user.mandarEmail("camiloriffoc@gmail.com", "Mensajeeeeee", "asuntoooo");
+        if(!user.tienePractica(77777)){
+            System.out.println("El campo es NULO");
+        }else{
+          System.out.println("Usuario ya tiene una practica");
+        }
         
         
         

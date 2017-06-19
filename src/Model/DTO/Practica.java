@@ -26,6 +26,7 @@ public class Practica extends Conexion{
     private int idCentroPractica; 
     private int idActa1; 
     private int idActa2;
+    private int rutDocente;
 
     public Practica(int idPractica, String tipoHorasPractica, int cantHoras, String fechaTerimno, String fechaInicio, boolean distancia, String donde, double notaFinal, int idCentroPractica, int idActa1, int idActa2) {
         this.idPractica = idPractica;
@@ -53,6 +54,7 @@ public class Practica extends Conexion{
         this.idCentroPractica = 0;
         this.idActa1 = 0;
         this.idActa2 = 0;
+        this.rutDocente = 0;
     }
 
     public int getIdPractica() {
@@ -142,6 +144,15 @@ public class Practica extends Conexion{
     public void setIdActa2(int idActa2) {
         this.idActa2 = idActa2;
     }
+
+    public int getRutDocente() {
+        return rutDocente;
+    }
+
+    public void setRutDocente(int rutDocente) {
+        this.rutDocente = rutDocente;
+    }
+    
     
     
     public boolean Create(int rut_alumno, int rut_docente,String fecha_inicio,String fecha_termino,String tipo_practica,int cantidad_horas,int idcentro,String nombre_centro,String username, String pass,String email_centro){
@@ -175,5 +186,92 @@ public class Practica extends Conexion{
         return salida;
     }
     
+    
+    //Actualizar una práctica
+    public boolean Update(int rut_alumno, int rut_docente,String fecha_inicio,String fecha_termino,String tipo_practica,int cantidad_horas,int idcentro,String nombre_centro,String username, String pass,String email_centro,int id_practica){
+        try {
+                CallableStatement cst;
+                cst = con.prepareCall("{call update_practica(?,?,?,?,?,?,?,?,?,?,?,?)}");
+                cst.setInt(1, rut_alumno);
+                cst.setInt(2, rut_docente);
+                cst.setString(3, fecha_inicio);
+                cst.setString(4, fecha_termino);
+                cst.setString(5, tipo_practica);
+                cst.setInt(6, cantidad_horas);
+                cst.setInt(7, idcentro);
+                cst.setString(8, nombre_centro);
+                cst.setString(9, username);
+                cst.setString(10, pass);
+                cst.setString(11, email_centro);
+                cst.setInt(12, id_practica);
+                cst.execute();
+                      
+            return true;
+        } catch (Exception e) {
+            System.out.println("entro al catch de update práctica "+e.getMessage());
+            return false;
+        }
+    
+    
+    }
+    
+    //elimnar una práctica
+    public boolean Delete(int rut_alumno, int id_practica){
+        try {
+            CallableStatement cst;
+            cst = con.prepareCall("{call eliminar_practica(?,?)}");
+            cst.setInt(1, rut_alumno);
+            cst.setInt(2, id_practica);
+            cst.execute();
+            
+            return true;
+        } catch (Exception e) {
+            System.out.println("entro al catch de delete práctica "+e.getMessage());
+            return false;
+        }
+    
+    }
+    
+    
+    //Método que devuelve los datos de una práctica en caso que ya tenga
+    public void DatosPractica(int rut_alumno){
+        
+        try {
+            
+            //Usamos el Procedimiento almacenado
+            CallableStatement cst;
+            cst = con.prepareCall("{call datos_practica_java(?,?,?,?,?,?)}");
+            
+            // Parametro IN del procedimiento almacenado
+            cst.setInt(1, rut_alumno);
+            cst.registerOutParameter(2, java.sql.Types.VARCHAR);//tipo de horas
+            cst.registerOutParameter(3, java.sql.Types.DATE);//Fecha inicio
+            cst.registerOutParameter(4, java.sql.Types.DATE);//Fecha termino
+            cst.registerOutParameter(5, java.sql.Types.INTEGER);//id centro practica
+            cst.registerOutParameter(6, java.sql.Types.INTEGER);//rut docente
+            
+            cst.execute();
+            String tipo_horas_practica = cst.getString(2);
+            Date fecha_inicio = cst.getDate(3);
+            Date fecha_termino = cst.getDate(4);
+            int id_centro_practica = cst.getInt(5);
+            int rut_docente = cst.getInt(6);
+            
+            //asiganmos valores al objeto
+            this.setTipoHorasPractica(tipo_horas_practica);
+            this.setFechaInicio(fecha_inicio.toString());
+            this.setFechaTerimno(fecha_termino.toString());
+            this.setIdCentroPractica(id_centro_practica);
+            this.setRutDocente(rut_docente);
+            
+            
+            
+            
+        } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+        }
+        
+    
+    }
     
 }

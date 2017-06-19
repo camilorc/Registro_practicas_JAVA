@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
  */
 public class CoordinadorCrearActa1 extends javax.swing.JFrame {
     private String emailAlumno;
+    private int idpracticaalumno;
     /**
      * Creates new form CoordinadorCrearActa1
      */
@@ -37,6 +38,8 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
         initComponents();
         llenarComboDocentes();
         llenarComboCentros();
+        btn_editar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
         cmb_centros.setEnabled(false);
 
     }
@@ -88,7 +91,6 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
         txtAnioI = new javax.swing.JTextField();
         txtDiaT = new javax.swing.JTextField();
         txtMesT = new javax.swing.JTextField();
-        txtAnioT = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -100,6 +102,9 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jtf_email_centro = new javax.swing.JTextField();
+        btn_editar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
+        txtAnioT = new javax.swing.JTextField();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -233,6 +238,11 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
         jLabel7.setText("Tipo de Práctica");
 
         cmb_tipo_practica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Profesional", "Laboral" }));
+        cmb_tipo_practica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_tipo_practicaActionPerformed(evt);
+            }
+        });
 
         check_1.setText("Existente");
         check_1.addActionListener(new java.awt.event.ActionListener() {
@@ -278,12 +288,6 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
             }
         });
 
-        txtAnioT.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtAnioTKeyTyped(evt);
-            }
-        });
-
         jLabel8.setText("/");
 
         jLabel9.setText("/");
@@ -313,6 +317,20 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
 
         jLabel18.setText("Email:");
 
+        btn_editar.setText("Editar");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
+
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -320,18 +338,6 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(135, 135, 135))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblMsje)
-                                .addGap(161, 161, 161))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnBuscar)
-                                .addGap(68, 68, 68))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
@@ -366,19 +372,18 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtMesI, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                                             .addComponent(txtMesT))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(3, 3, 3)
                                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(3, 3, 3)
                                                 .addComponent(txtAnioI, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtAnioT, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btn_cal_fch))))
+                                                .addComponent(txtAnioT, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_cal_fch))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(cmb_tipo_practica, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -399,30 +404,44 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(check_1)))
                                 .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(cmb_centros, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnGuardar)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(btnLimpiar)
-                                        .addGap(224, 224, 224)
-                                        .addComponent(btn_volver))
-                                    .addComponent(cmb_centros, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel16)
-                                            .addComponent(jLabel15)
-                                            .addComponent(jLabel18))
-                                        .addGap(41, 41, 41)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtNomCentro, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
-                                            .addComponent(txtuserNameCentro, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
-                                            .addComponent(jtf_email_centro)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cmb_nom_docente1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel18))
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNomCentro, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                                    .addComponent(txtuserNameCentro, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                                    .addComponent(jtf_email_centro)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmb_nom_docente1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnGuardar)
+                                .addGap(29, 29, 29)
+                                .addComponent(btnLimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGap(94, 94, 94))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblMsje)
+                                        .addGap(120, 120, 120))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnBuscar)
+                                        .addGap(27, 27, 27))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btn_editar)
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btn_volver, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(btn_eliminar)
+                                                .addGap(94, 94, 94)))))))
                         .addGap(0, 41, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -467,15 +486,14 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtAnioT, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_cal_fch))
+                    .addComponent(btn_cal_fch, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(txtDiaT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtMesT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11)
-                        .addComponent(jLabel10)))
+                        .addComponent(jLabel10)
+                        .addComponent(txtAnioT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(3, 3, 3)
                 .addComponent(jLabel13)
                 .addGap(1, 1, 1)
@@ -504,7 +522,10 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_volver, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_volver)
+                        .addComponent(btn_eliminar)
+                        .addComponent(btn_editar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -575,11 +596,11 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                 llenarComboCentros();
                 
             } else {
-                lblMsje.setText("Error al crear Acta1");
+                JOptionPane.showMessageDialog(null, null, "Practica no pudo ser creada", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, null, "Acta1 no pudo ser creada" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, null, "Practica no pudo ser creada" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -590,6 +611,9 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         lblMsje.setText("");
+        btnGuardar.setEnabled(true);
+        btn_editar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
         try {
             Usuario user = new Usuario();
             user.setRut(Integer.parseInt(txtRut.getText()));
@@ -601,10 +625,57 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
                 txtApellido2.setText(user.getApellido2());
                 txtCarrera.setText(user.nombre_carrera());
                 emailAlumno = user.getEmail();
+                idpracticaalumno = user.getId_practica();
+                
+                //Damos mensaje si es que el alumno ya tiene una práctica
+                if(user.tienePractica(user.getRut())){
+                    JOptionPane.showMessageDialog(this,"Alumno ya posee una práctica");
+                    System.out.println("id_practica = "+user.getId_practica());
+                    btnGuardar.setEnabled(false);
+                    btn_editar.setEnabled(true);
+                    btn_eliminar.setEnabled(true);
+                    check_1.setSelected(true);//Se selecciona que existe
+                    cmb_centros.setEnabled(true);//Habilitamos combobox
+                    txtNomCentro.setEnabled(false);
+                    txtuserNameCentro.setEnabled(false);
+                    jtf_email_centro.setEnabled(false);
+                    
+                    //Usamos el Procedimiento almacenado en la clase Practica
+                    Practica prac = new Practica();
+                    prac.DatosPractica(user.getRut());
+                    
+                    CentroPractica cen = new CentroPractica();
+                    
+                    cen.setIdCentroPractica(prac.getIdCentroPractica());
+                    cmb_centros.setSelectedItem(cen);
+                    cmb_tipo_practica.setSelectedItem(prac.getTipoHorasPractica());
+                    
+                    Usuario u = new Usuario();
+                    u.setRut(prac.getRutDocente());
+                    cmb_nom_docente1.setSelectedItem(u);
+                    
+                    System.out.println("Fecha Inicio: "+prac.getFechaInicio());
+                    System.out.println("Fecha Termino: "+prac.getFechaTerimno());
+                    
+                    //Llenamos los txt de las fechas
+                    String[] fechaIni = prac.getFechaInicio().split("-");
+                    String[] fechaTer = prac.getFechaTerimno().split("-");
+                    
+                    txtDiaI.setText(fechaIni[2]);
+                    txtMesI.setText(fechaIni[1]);
+                    txtAnioI.setText(fechaIni[0]);
+                    
+                    txtDiaT.setText(fechaTer[2]);
+                    txtMesT.setText(fechaTer[1]);
+                    txtAnioT.setText(fechaTer[0]);
+                    
+                }
                 
 
             } else {
-                lblMsje.setText("El alumno no ha sido encontro");
+                JOptionPane.showMessageDialog(this,"El alumno no ha sido encontrado");
+                //limpiar campos
+                limpiarFormulario();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, null, "Ocurrio un error" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
@@ -750,18 +821,6 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtMesTKeyTyped
 
-    private void txtAnioTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioTKeyTyped
-        char c = evt.getKeyChar();
-        int largo = 4;
-        if (c < '0' || c > '9') {
-            evt.consume();
-        }
-        if (txtAnioT.getText().length() >= largo) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Ingrese solo 4 caracteres");
-        }
-    }//GEN-LAST:event_txtAnioTKeyTyped
-
     private void btn_cal_fchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cal_fchActionPerformed
         int tipo = cmb_tipo_practica.getSelectedIndex();
         int num_horas = (tipo==0)?360:240;
@@ -791,6 +850,98 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
     private void txtNomCentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomCentroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomCentroActionPerformed
+
+    private void cmb_tipo_practicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipo_practicaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_tipo_practicaActionPerformed
+
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        Validar();
+        
+        String fechaInicio = txtDiaI.getText() + "/" + txtMesI.getText() + "/" + txtAnioI.getText();
+        String fechaTermino = txtDiaT.getText() + "/" + txtMesT.getText() + "/" + txtAnioT.getText();
+        try {
+            Usuario docente = (Usuario) cmb_nom_docente1.getSelectedItem();
+            CentroPractica centro = (CentroPractica) cmb_centros.getSelectedItem();
+            Usuario alumno = new Usuario();
+            int rut_alumno = Integer.parseInt(txtRut.getText());
+            alumno.tienePractica(rut_alumno);
+            Practica practica = new Practica();
+            int cantidad_horas = 0;
+            int idcentro = 0;
+            String nombreCentro = "";
+       
+            //Obtenemos valores del Formulario
+
+            String username ="";
+            String pass = "";
+            //randon para pass centro practica
+            int numero = (int) (Math.random() * 100) + 1;
+            //Verificamos si es un centro nuevo
+            if (check_1.isSelected()) {
+                //Existe el centro traemos su ID
+                idcentro = centro.getIdCentroPractica();
+                nombreCentro = centro.getNombreCentro();
+            } else {
+                nombreCentro = txtuserNameCentro.getText();
+                username = txtuserNameCentro.getText();
+                pass = txtuserNameCentro.getText()+""+numero;
+            }
+            
+            //Calculamos cantidad de horas según tipo
+            if (cmb_tipo_practica.getSelectedItem().toString().equals("Profesional")) {
+                cantidad_horas = 600;
+            } else {
+                cantidad_horas = 480;
+
+            }
+            String email_centro = jtf_email_centro.getText();
+            
+            if(practica.Update(rut_alumno, docente.getRut(), fechaInicio, fechaTermino, cmb_tipo_practica.getSelectedItem().toString(), cantidad_horas, idcentro, nombreCentro, username, pass, email_centro, alumno.getId_practica())){
+                JOptionPane.showMessageDialog(null, "Practica ha sido editada", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                limpiarFormulario();
+                //Mandamos un email al Alumno con detalles:
+                System.out.println("Este es el email: "+emailAlumno);
+                alumno.mandarEmail(emailAlumno, "Se acaba de actualizar su practica, favor revisar detalles en la web", "Práctica asignada");
+                //Mandamos email al Profesor
+                //docente.mandarEmail(docente.getEmail(), "Se acaba de actualizar o agregar un nuevo alumno en práctica, favor revisar portal web para más detalles", "Nueva asignación de Alumno DUOC UC");
+                //Mandamo email al centro
+                //if (!check_1.isSelected()) {
+                //Si esta seleccionado es verdadero ( existe ) por lo tanto no debería entrar
+                //Usuario centro_pract = new Usuario();
+                //centro_pract.mandarEmail(email_centro, "Sus datos de acceso son: USERNAME: "+username+" y su passwors es: "+pass, "Datos de acceso portal DUOC UC");
+                //} 
+ 
+            }else{
+            
+                JOptionPane.showMessageDialog(null, null, "Practica no pudo ser creada", JOptionPane.ERROR_MESSAGE);
+            }
+      
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, null, "Practica no pudo ser creada" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        try {
+            Practica prac = new Practica();
+            if(prac.Delete(Integer.parseInt(txtRut.getText()), idpracticaalumno)){
+                System.out.println("id practica: "+idpracticaalumno);
+                System.out.println("rut alumno: "+txtRut.getText());
+                JOptionPane.showMessageDialog(null, "Practica ha sido eliminada", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                limpiarFormulario();
+            }else{
+                JOptionPane.showMessageDialog(null, null, "No se pudo eliminar", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            
+            
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, null, "No se pudo eliminar" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -832,6 +983,8 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btn_cal_fch;
+    private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_volver;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -893,6 +1046,11 @@ public class CoordinadorCrearActa1 extends javax.swing.JFrame {
         txtDiaT.setText("");
         txtMesT.setText("");
         txtAnioT.setText("");
+        check_1.setSelected(false);//Se selecciona que existe
+        cmb_centros.setEnabled(false);//Habilitamos combobox
+        txtNomCentro.setEnabled(true);
+        txtuserNameCentro.setEnabled(true);
+        jtf_email_centro.setEnabled(true);
     }
 
     private void llenarComboDocentes() {

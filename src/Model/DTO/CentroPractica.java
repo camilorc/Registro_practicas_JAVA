@@ -8,6 +8,7 @@ package Model.DTO;
 import Model.DAO.Conexion;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -113,6 +114,13 @@ public class CentroPractica extends Conexion{
     public String toString() {
         return this.nombreCentro;
     }
+    
+    @Override
+    public boolean equals(Object other) {
+        return this.idCentroPractica == ((CentroPractica)other).getIdCentroPractica();
+    }
+
+    
     
     //Array de Centros de práctica
     public ArrayList<CentroPractica> BuscarTodosCentros(){

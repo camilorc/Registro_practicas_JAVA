@@ -612,7 +612,40 @@ public class Usuario extends Conexion{
     
     
     }
+    
+    //Saber si ya posee una práctica ( el alumno)
+    public boolean tienePractica(int rut_alumno){
+        try {
+            
+            CallableStatement cst;
+            cst = con.prepareCall("{call saber_si_tiene_practica(?,?)}");
+            
+            // Parametro IN del procedimiento almacenado
+            cst.setInt(1, rut_alumno);
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);//estado
+            
+            cst.execute();
+            int estado = cst.getInt(2);
+            this.id_practica = estado;
+            if(estado == 0){ // igual a 0, quiere decir que el campo es NULL, por lo tanto, no tiene práctica
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            
+            
+            return false;
+        }
+    
+    
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        return this.rut == ((Usuario)other).getRut();
+    }
 
+    
     
     
     
