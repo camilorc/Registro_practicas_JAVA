@@ -7,6 +7,7 @@ package registropracticas;
 
 import Model.DAO.Acta1DAO;
 import Model.DAO.Conexion;
+import Model.DTO.DetallePracticaAlumno;
 import Model.DTO.Usuario;
 import Model.DTO.ListaAlumnos;
 import java.sql.CallableStatement;
@@ -71,14 +72,24 @@ public class RegistroPracticas extends Conexion{
     }
     
     public static void main(String[] args) throws SQLException {
-        Usuario user = new Usuario();
+        //Usuario user = new Usuario();
         //user.mandarEmail("camiloriffoc@gmail.com", "Mensajeeeeee", "asuntoooo");
-        if(!user.tienePractica(77777)){
-            System.out.println("El campo es NULO");
-        }else{
-          System.out.println("Usuario ya tiene una practica");
-        }
+        //if(!user.tienePractica(77777)){
+        //    System.out.println("El campo es NULO");
+        //}else{
+        //  System.out.println("Usuario ya tiene una practica");
+        //}
         
+        DetallePracticaAlumno detalle = new DetallePracticaAlumno();
+        
+        
+        if(detalle.obtenerDatos(44444)){
+            System.out.println("dato: "+detalle.getNombres());
+            System.out.println("dato: "+detalle.getFechaInicio());
+            System.out.println("dato: "+detalle.getNombreCentro());
+        }else{
+          System.out.println("errorrrr");
+        }
         
         
     }
